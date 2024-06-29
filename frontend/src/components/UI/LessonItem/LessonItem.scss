@@ -1,0 +1,14 @@
+.LessonItem {
+  padding: 16px;
+  background-color: rgb(194, 155, 232);
+  max-width: 120px;
+
+  &.blueviolet {
+    color: blueviolet;
+    background-color: rgba(137, 43, 226, 0.3);
+  }
+
+  &__header {
+    color: blueviolet;
+  }
+}

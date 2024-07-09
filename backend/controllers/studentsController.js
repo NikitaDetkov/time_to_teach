@@ -12,6 +12,11 @@ class StudentsControler {
         const student = await Student.create({ email, password: passwordHash });
         return res.json(student);
     }
+
+    async getAll(req, res) {
+        const students = await Student.findAll();
+        return res.json(students);
+    }
 }
 
 module.exports = new StudentsControler();

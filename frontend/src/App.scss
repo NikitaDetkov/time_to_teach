@@ -1,0 +1,11 @@
+@import './syles/_fonts.scss';
+
+body {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-style: normal;
+    
+    h3, h4 {
+        margin: 0;
+    }
+}

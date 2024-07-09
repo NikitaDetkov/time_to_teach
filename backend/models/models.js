@@ -19,6 +19,8 @@ const Student = sequelize.define('student', {
   password: { type: DataTypes.STRING },
   birthdate: { type: DataTypes.DATE },
   grade: { type: DataTypes.INTEGER },
+  name: { type: DataTypes.INTEGER },
+  surname: { type: DataTypes.INTEGER },
 });
 
 const Tutor = sequelize.define('tutor', {
@@ -26,6 +28,8 @@ const Tutor = sequelize.define('tutor', {
   email: { type: DataTypes.STRING, unique: true },
   password: { type: DataTypes.STRING },
   birthdate: { type: DataTypes.DATE },
+  name: { type: DataTypes.INTEGER },
+  surname: { type: DataTypes.INTEGER },
 });
 
 Tutor.hasMany(Lesson);

@@ -1,5 +1,5 @@
 import { LESSONS_ROUTE, LESSON_CARD_ROUTE } from "./utils/consts";
-import Lessons from "./pages/Lessons";
+import Lessons from "./pages/Lessons/Lessons";
 import React from "react";
 // import LessonCard from "./pages/LessonCard";
 

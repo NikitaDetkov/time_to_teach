@@ -1,0 +1,13 @@
+@mixin setColorLessonItem($color, $parent) {
+    background-color: rgba($color, 0.3);
+    color: $color;
+  
+    #{$parent}--price {
+      border: 1px dashed $color;
+      padding: 0 4px;
+    }
+    
+    #{$parent}--student {
+      border-color: rgba($color, 0.7);
+    }
+  }

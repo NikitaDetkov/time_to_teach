@@ -1,0 +1,120 @@
+@import '../../../syles/variables';
+
+.UserSelect {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+
+    &__info {
+        width: 150px;
+    }
+
+    &__input {
+        position: relative;
+        width: 200px; 
+
+        & button {
+            cursor: pointer;
+            background-color: white;
+            width: 100%;
+            border-radius: 4px;
+            text-align: left;
+            font-family: $font_family;
+            font-size: 16px;
+            border: 1px solid $blue_light;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                border-top: 1px solid #6E18C0;
+                border-right: 1px solid #6E18C0;
+                margin-right: 6px;
+                margin-top: -2px;
+                transform: rotate(135deg);
+            }
+        }
+
+        &--search {
+            font-family: $font_family;
+            font-size: 16px;
+            border-radius: 4px 4px 0 0;
+            border: 1px solid $blue_light;
+            color: $blue;
+            padding-left: 4px;
+            border-bottom: 0;
+
+            &::placeholder {
+                color: $blue_light;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        &--list {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+
+            &.open {
+                display: flex;
+            }
+
+            & span {
+                padding-left: 4px;
+            }
+        }
+
+        ul {
+            background-color: white;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow-y: scroll;
+            max-height: 150px;
+            border: 1px solid $blue_light;
+            border-radius: 0 0 4px 4px;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+                background-color: $blue_light;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                border-radius: 6px;
+                background-color: $blue;
+            }
+
+            &::-webkit-scrollbar-track {
+                border-radius: 6px;
+                background-color: $blue_light;
+            }
+
+            li {
+                padding: 2px 0 2px 4px;
+                border-bottom: 1px solid $blue_light;
+                cursor: pointer;
+                
+                &:last-child {
+                    border-bottom: 0;
+                }
+            
+            }
+        }
+
+        &--value {
+            display: none;
+        }
+    }
+}

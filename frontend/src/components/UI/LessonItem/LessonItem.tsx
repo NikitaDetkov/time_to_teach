@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { LessonType, SubjectType, StudentType } from '../../../types';
-import './LessonItem.scss';
+import './_LessonItem.scss';
 
 type Props = { 
     lesson: LessonType,

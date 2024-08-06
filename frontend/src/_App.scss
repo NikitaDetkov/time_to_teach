@@ -1,0 +1,15 @@
+@import './syles/variables';
+
+body {
+    font-family: $font_family;
+    font-weight: 400;
+    font-style: normal;
+    
+    h3, h4 {
+        margin: 0;
+    }
+
+    h3 {
+        font-weight: 400;
+    }
+}

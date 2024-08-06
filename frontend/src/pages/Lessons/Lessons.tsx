@@ -4,7 +4,8 @@ import SubjectsService from '../../services/SubjectsService';
 import StudentsService from '../../services/StudentsService';
 import LessonItem from '../../components/UI/LessonItem/LessonItem';
 import { SubjectType, LessonType, StudentType } from '../../types';
-import './Lessons.scss';
+import './_Lessons.scss';
+import AddLessonForm from '../../components/UI/AddLessonForm/AddLessonForm';
 
 const Lessons = () => {
     const [lessonsList, setLessonsList] = useState([]);
@@ -41,6 +42,7 @@ const Lessons = () => {
     return (
         <div className='Lessons'>
             <h2>Lessons Page</h2>
+            <AddLessonForm subjectsList={subjectsList} studentsList={studentsList}/>
             {lessonsList.map((lesson: LessonType, key) => (
                 <LessonItem 
                     key={key} 

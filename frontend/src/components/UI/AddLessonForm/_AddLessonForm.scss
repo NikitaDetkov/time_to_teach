@@ -1,0 +1,30 @@
+@import '../../../syles/variables';
+
+.AddLessonForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+
+    &__header {
+        color: white;
+        background-color: $blue;
+        padding: 6px 14px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    &__main {
+        padding: 10px 14px;
+        border-radius: 0 0 10px 10px;
+        border: 2px solid $blue;
+
+        &--subject {
+            margin-bottom: 10px;
+        } 
+
+        &--student {
+            margin-bottom: 15px;
+        } 
+    }
+
+    
+}

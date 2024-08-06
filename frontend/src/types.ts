@@ -22,3 +22,8 @@ export type StudentType = {
 	email: string,
 	birthDate: string
 };
+
+export type SelectItem = {
+	id: number | string,
+	option: string
+};

@@ -4,19 +4,18 @@ import './_UserSelect.scss';
 
 type Props = {
     selectList: Array<SelectItem>;
-    label: string;
     selectedValue?: SelectItem | undefined | null;
 };
 
-const UserSelect = ({ selectList, label, selectedValue }: Props) => {
+const UserSelect = ({ selectList, selectedValue }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchString, setSearchString] = useState('');
 
-    const selectedItemValue = selectedValue ?? 
+    const startSelectedValue = selectedValue ?? 
         selectList[0] ?? 
         { id: -1, option: 'Список пуст' } as SelectItem;
 
-    const [selectedItem, setSelectedItem] = useState(selectedItemValue);
+    const [selectedItem, setSelectedItem] = useState(startSelectedValue);
 
     useEffect(() => {
         return () => {
@@ -62,7 +61,6 @@ const UserSelect = ({ selectList, label, selectedValue }: Props) => {
     return (
         selectListFiltred ?
         <div className="UserSelect">
-            <label className="UserSelect__info">{ label }</label>
             <div className="UserSelect__input">
                 <button onClick={openSelect}>
                     <span>{ selectedItem.option }</span>

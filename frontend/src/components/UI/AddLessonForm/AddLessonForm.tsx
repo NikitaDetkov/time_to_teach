@@ -3,6 +3,7 @@ import { LessonType, SubjectType, StudentType, SelectItem } from '../../../types
 import './_AddLessonForm.scss';
 import UserSelect from '../UserSelect/UserSelect';
 import UserInput from '../UserInput/UserInput';
+import UserCheckbox from '../UserCheckbox/UserCheckbox';
 
 type Props = {
     subjectsList: Array<SubjectType>;
@@ -10,6 +11,8 @@ type Props = {
 };
 
 const AddLessonForm = ({subjectsList, studentsList}: Props) => {
+    const [isProfile, setIsProfile] = useState(false);
+
     const subjectsSelectList: Array<SelectItem> = subjectsList
         .map(item => ({ id: item.id, option: item.name }));
 
@@ -30,7 +33,7 @@ const AddLessonForm = ({subjectsList, studentsList}: Props) => {
                         ? <UserSelect selectList={subjectsSelectList} />
                     : '' }
                     <label>Профильный уровень</label>
-                    {/* <UserInput /> */}
+                    <UserCheckbox value={isProfile} setValue={setIsProfile}/>
                 </div>
 
                 <div className='AddLessonForm__main--student'>

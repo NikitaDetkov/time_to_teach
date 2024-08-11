@@ -36,13 +36,17 @@ const Lessons = () => {
     }
 
     function getStudent(studentId: number) {
-        return studentsList.find((student: StudentType) => student.id === studentId) ;
+        return studentsList.find((student: StudentType) => student.id === studentId);
     }
 
     return (
         <div className='Lessons'>
             <h2>Lessons Page</h2>
-            <AddLessonForm subjectsList={subjectsList} studentsList={studentsList}/>
+            {
+                subjectsList.length && 
+                studentsList.length && 
+                <AddLessonForm subjectsList={subjectsList} studentsList={studentsList}/>
+            }
             {lessonsList.map((lesson: LessonType, key) => (
                 <LessonItem 
                     key={key} 

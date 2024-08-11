@@ -12,6 +12,7 @@ type Props = {
 
 const AddLessonForm = ({subjectsList, studentsList}: Props) => {
     const [isProfile, setIsProfile] = useState(false);
+    const [price, setPrice] = useState('');
 
     const subjectsSelectList: Array<SelectItem> = subjectsList
         .map(item => ({ id: item.id, option: item.name }));
@@ -22,6 +23,9 @@ const AddLessonForm = ({subjectsList, studentsList}: Props) => {
             option: item.surname + ' ' + item.name[0] + '.' 
         }));
 
+    const [subject, setSubject] = useState(subjectsSelectList[0]);
+    const [student, setStudent] = useState(studentsSelectList[0]);
+
     return (
         <form className='AddLessonForm' onSubmit={(e) => e.preventDefault()}>
             <h3 className='AddLessonForm__header'>Добавить урок</h3>
@@ -30,22 +34,30 @@ const AddLessonForm = ({subjectsList, studentsList}: Props) => {
                 <div className='AddLessonForm__main--subject'>
                     <label>Выбрать предмет</label>
                     { subjectsSelectList.length  
-                        ? <UserSelect selectList={subjectsSelectList} />
+                        ? <UserSelect 
+                            selectList={subjectsSelectList} 
+                            value={subject} 
+                            setValue={setSubject}
+                        />
                     : '' }
-                    <label>Профильный уровень</label>
                     <UserCheckbox value={isProfile} setValue={setIsProfile}/>
+                    <label>Профильный уровень</label>
                 </div>
 
                 <div className='AddLessonForm__main--student'>
                     <label>Выбрать ученика</label>
                     { studentsSelectList.length  
-                        ? <UserSelect selectList={studentsSelectList} />
+                        ? <UserSelect 
+                            selectList={studentsSelectList}
+                            value={student} 
+                            setValue={setStudent}
+                        />
                     : '' }
                 </div>
 
                 <div className='AddLessonForm__main--price'>
                     <label>Стоимость урока</label>
-                    <UserInput placeholder="&#8381; за час"/>
+                    <UserInput placeholder="&#8381; за час" value={price} setValue={setPrice} />
                 </div>
             </div>
         </form>

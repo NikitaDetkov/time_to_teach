@@ -3,14 +3,11 @@ import './_UserInput.scss';
 
 type Props = {
     placeholder: string | undefined | null;
-    inputValue?: string | undefined | null;
+    value: string;
+    setValue: Function
 };
 
-const UserInput = ({ placeholder, inputValue }: Props) => {
-    const startValue = inputValue ?? '';
-
-    const [value, setValue] = useState(startValue);
-
+const UserInput = ({ placeholder, value, setValue }: Props) => {
     return (
         <div className="UserInput">
             <input 

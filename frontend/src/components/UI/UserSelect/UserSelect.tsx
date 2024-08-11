@@ -4,18 +4,13 @@ import './_UserSelect.scss';
 
 type Props = {
     selectList: Array<SelectItem>;
-    selectedValue?: SelectItem | undefined | null;
+    value: SelectItem;
+    setValue: Function;
 };
 
-const UserSelect = ({ selectList, selectedValue }: Props) => {
+const UserSelect = ({ selectList, value, setValue }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchString, setSearchString] = useState('');
-
-    const startSelectedValue = selectedValue ?? 
-        selectList[0] ?? 
-        { id: -1, option: 'Список пуст' } as SelectItem;
-
-    const [selectedItem, setSelectedItem] = useState(startSelectedValue);
 
     useEffect(() => {
         return () => {
@@ -51,7 +46,7 @@ const UserSelect = ({ selectList, selectedValue }: Props) => {
         const item = e.target as HTMLElement;
 
         if (item.classList.contains('UserSelect__input--list__item')) {
-            setSelectedItem({ 
+            setValue({ 
                 id: item.getAttribute('value') ?? '', 
                 option: item.innerText,
             });
@@ -63,7 +58,7 @@ const UserSelect = ({ selectList, selectedValue }: Props) => {
         <div className="UserSelect">
             <div className="UserSelect__input">
                 <button onClick={openSelect}>
-                    <span>{ selectedItem.option }</span>
+                    <span>{ value.option }</span>
                 </button>
                 <div className={ 
                     'UserSelect__input--list' + (isOpen ? ' open' : '')
@@ -91,7 +86,7 @@ const UserSelect = ({ selectList, selectedValue }: Props) => {
                     </ul>
                     <input 
                         className="UserSelect__input--value" 
-                        type="text" value={selectedItem.id}
+                        type="text" value={value.id}
                     />
                 </div>
             </div>

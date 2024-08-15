@@ -4,11 +4,11 @@ import './_UserSelect.scss';
 
 type Props = {
     selectList: Array<SelectItem>;
-    value: SelectItem;
-    setValue: Function;
+    selected: number | string;
+    onSelect: Function;
 };
 
-const UserSelect = ({ selectList, value, setValue }: Props) => {
+const UserSelect = ({ selectList, selected, onSelect }: Props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchString, setSearchString] = useState('');
 
@@ -46,10 +46,7 @@ const UserSelect = ({ selectList, value, setValue }: Props) => {
         const item = e.target as HTMLElement;
 
         if (item.classList.contains('UserSelect__input--list__item')) {
-            setValue({ 
-                id: item.getAttribute('value') ?? '', 
-                option: item.innerText,
-            });
+            onSelect(item.getAttribute('value'));
         }
     }
 
@@ -58,7 +55,7 @@ const UserSelect = ({ selectList, value, setValue }: Props) => {
         <div className="UserSelect">
             <div className="UserSelect__input">
                 <button onClick={openSelect}>
-                    <span>{ value.option }</span>
+                    <span>{ selectListFiltred.find(item => item.id === selected)!.option }</span>
                 </button>
                 <div className={ 
                     'UserSelect__input--list' + (isOpen ? ' open' : '')
@@ -86,7 +83,7 @@ const UserSelect = ({ selectList, value, setValue }: Props) => {
                     </ul>
                     <input 
                         className="UserSelect__input--value" 
-                        type="text" value={value.id}
+                        type="text" value={selected}
                     />
                 </div>
             </div>

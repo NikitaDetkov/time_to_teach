@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import './_UserInput.scss';
 
 type Props = {
-    placeholder: string | undefined | null;
+    placeholder?: string | undefined | null;
     value: string;
-    setValue: Function
+    onChange: Function,
 };
 
-const UserInput = ({ placeholder, value, setValue }: Props) => {
+const UserInput = ({ value, placeholder, onChange }: Props) => {
     return (
         <div className="UserInput">
             <input 
-                value={value} 
-                type="text" 
-                placeholder={placeholder ?? ''}
-                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                placeholder={placeholder || ''} 
+                onChange={(e) => onChange(e.target.value)} 
             />
         </div>
     );

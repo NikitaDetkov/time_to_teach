@@ -1,6 +1,8 @@
 @import '../../../syles/variables';
 
 .UserInput {
+    width: 200px;
+
     input {
         border: 1px solid $blue_light;
         font-size: $font_size_normal;

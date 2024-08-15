@@ -4,6 +4,7 @@ import './_AddLessonForm.scss';
 import UserSelect from '../UserSelect/UserSelect';
 import UserInput from '../UserInput/UserInput';
 import UserCheckbox from '../UserCheckbox/UserCheckbox';
+import UserButton from '../UserButton/UserButton';
 
 type Props = {
     subjectsList: Array<SubjectType>;
@@ -11,9 +12,6 @@ type Props = {
 };
 
 const AddLessonForm = ({subjectsList, studentsList}: Props) => {
-    const [isProfile, setIsProfile] = useState(false);
-    const [price, setPrice] = useState('');
-
     const subjectsSelectList: Array<SelectItem> = subjectsList
         .map(item => ({ id: item.id, option: item.name }));
 
@@ -23,41 +21,93 @@ const AddLessonForm = ({subjectsList, studentsList}: Props) => {
             option: item.surname + ' ' + item.name[0] + '.' 
         }));
 
-    const [subject, setSubject] = useState(subjectsSelectList[0]);
-    const [student, setStudent] = useState(studentsSelectList[0]);
+    const initialLesson = {
+        is_profile: false,
+        price: 0,
+        subjectId: subjectsSelectList[0].id,
+        studentId: studentsSelectList[0].id
+    };
+
+    const [lesson, setLesson] = useState(initialLesson); 
+
+    function handleSubjectsSelect(subjectId: string) {
+        setLesson({
+            ...lesson, 
+            subjectId: Number(subjectId)
+        });
+    }
+
+    function handleStudentsSelect(studentId: string) {
+        setLesson({
+            ...lesson, 
+            studentId: Number(studentId)
+        });
+    }
+
+    function handlePriceInput(price: string) {
+        const newPrice = Number(price);
+
+        if (isNaN(newPrice)) return;
+
+        setLesson({
+            ...lesson, 
+            price: newPrice 
+        });
+    }
+
+    function handleIsProfileCheckbox(isProfile: boolean) {
+        setLesson({
+            ...lesson, 
+            is_profile: isProfile 
+        });
+    }
+    
+    function handleSaveLesson() {
+        console.log(lesson);
+    }
 
     return (
         <form className='AddLessonForm' onSubmit={(e) => e.preventDefault()}>
-            <h3 className='AddLessonForm__header'>Добавить урок</h3>
+            <span className='AddLessonForm__header'>Добавить урок</span>
             
             <div className='AddLessonForm__main'>
-                <div className='AddLessonForm__main--subject'>
-                    <label>Выбрать предмет</label>
-                    { subjectsSelectList.length  
-                        ? <UserSelect 
-                            selectList={subjectsSelectList} 
-                            value={subject} 
-                            setValue={setSubject}
-                        />
-                    : '' }
-                    <UserCheckbox value={isProfile} setValue={setIsProfile}/>
-                    <label>Профильный уровень</label>
+                <div className='AddLessonForm__subject'>
+                    <div className='AddLessonForm__subject--select'>
+                        <label>Выбрать предмет</label>
+                        { subjectsSelectList.length  
+                            ? <UserSelect 
+                                selectList={subjectsSelectList} 
+                                selected={lesson.subjectId} 
+                                onSelect={handleSubjectsSelect}
+                            />
+                        : '' }
+                    </div>
+                    <div className='AddLessonForm__subject--profile'>
+                        <UserCheckbox value={lesson.is_profile} onChange={handleIsProfileCheckbox}/>
+                        <label>Профильный уровень</label>
+                    </div>
                 </div>
 
-                <div className='AddLessonForm__main--student'>
+                <div className='AddLessonForm__student'>
                     <label>Выбрать ученика</label>
                     { studentsSelectList.length  
                         ? <UserSelect 
                             selectList={studentsSelectList}
-                            value={student} 
-                            setValue={setStudent}
+                            selected={lesson.studentId} 
+                            onSelect={handleStudentsSelect}
                         />
                     : '' }
                 </div>
 
-                <div className='AddLessonForm__main--price'>
+                <div className='AddLessonForm__price'>
                     <label>Стоимость урока</label>
-                    <UserInput placeholder="&#8381; за час" value={price} setValue={setPrice} />
+                    <UserInput value={String(lesson.price)} onChange={handlePriceInput}/>
+                </div>
+
+                <div className='AddLessonForm__buttons'>
+                    <UserButton onClick={handleSaveLesson} styleButton="save">Сохранить</UserButton>
+                    <UserButton onClick={handleSaveLesson} styleButton="danger">Отменить</UserButton>
+                    <UserButton onClick={handleSaveLesson}>Отменить</UserButton>
                 </div>
             </div>
         </form>

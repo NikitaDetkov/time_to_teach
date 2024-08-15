@@ -16,16 +16,48 @@
         padding: 10px 14px;
         border-radius: 0 0 10px 10px;
         border: 2px solid $blue;
-        display: grid;
-
-        &--subject {
-            margin-bottom: 10px;
-        } 
-
-        &--student {
-            margin-bottom: 15px;
-        } 
     }
 
-    
+    &__subject {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $blue_light;
+
+        &--select {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+            gap: 5px;
+        }
+
+        &--profile {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+    } 
+
+    &__student {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $blue_light;
+        gap: 5px;
+    } 
+
+    &__price {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+    } 
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+    }
 }

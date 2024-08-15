@@ -3,16 +3,16 @@ import './_UserCheckbox.scss';
 
 type Props = {
     value: boolean;
-    setValue: Function;
+    onChange: Function;
 };
 
-const UserCheckbox = ({ value, setValue }: Props) => {
+const UserCheckbox = ({ value, onChange }: Props) => {
     return (
         <div className="UserCheckbox">
             <input 
                 type="checkbox" 
                 checked={value} 
-                onChange={(e) => setValue(e.target.checked)}
+                onChange={(e) => onChange(e.target.checked)}
             />
             <label></label>
         </div>
